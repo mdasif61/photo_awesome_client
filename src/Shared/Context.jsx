@@ -26,8 +26,8 @@ const Context = ({children}) => {
         return signOut(auth)
     }
 
-    const updateData=(user,name,photo)=>{
-      return updateProfile(user,{
+    const updateData=(name,photo)=>{
+      return updateProfile(auth.currentUser,{
             displayName:name,
             photoURL:photo
         })
