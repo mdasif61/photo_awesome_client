@@ -7,11 +7,14 @@ import { toast } from "react-hot-toast";
 
 const Register = () => {
   const [error, setError] = useState("");
-  const { createUser, updateData, googleLogin } =
-    useContext(AuthContext);
+  const { createUser, updateData, googleLogin } = useContext(AuthContext);
   const navigate = useNavigate();
 
-  const { handleSubmit, register } = useForm();
+  const {
+    handleSubmit,
+    register,
+    formState: { errors },
+  } = useForm();
   const onSubmit = (data) => {
     if (data.password !== data.confirmPassword) {
       setError("Retype password not match");
@@ -20,8 +23,9 @@ const Register = () => {
     createUser(data.email, data.password)
       .then((result) => {
         console.log(result);
-        updateData(data.name,data.photo)
-        .then(result=>{}).catch(error=>{})
+        updateData(data.name, data.photo)
+          .then((result) => {})
+          .catch((error) => {});
         toast.success("Successfully Registerd ! Please login now");
         navigate("/login");
       })
@@ -31,14 +35,15 @@ const Register = () => {
   };
 
   const handleGoogleRegister = () => {
-    googleLogin().then((result) => {
-      console.log(result);
-      toast.success("Successfully Registerd ! Please login now");
-      navigate("/login");
-    })
-    .catch(error=>{
-        setError(error.message)
-    })
+    googleLogin()
+      .then((result) => {
+        console.log(result);
+        toast.success("Successfully Registerd ! Please login now");
+        navigate("/login");
+      })
+      .catch((error) => {
+        setError(error.message);
+      });
   };
 
   return (
@@ -85,10 +90,18 @@ const Register = () => {
             <input
               className="w-full h-12 py-2 px-4 bg-transparent focus:outline-none focus:bg-orange-100 focus:bg-opacity-30 text-white border-b-2 border-orange-500 mb-4 my-2"
               type="password"
-              {...register("password", { required: true })}
+              {...register("password", {
+                required: true,
+                minLength: 6,
+                pattern:/[A-Z]/,
+              })}
               id=""
               placeholder="Enter Your Password"
             />
+            {errors.password?.type==='minLength' && <p className="text-red-600">{"password is less than 6 characters"}</p>}
+            
+            {errors.password?.type==='pattern' && <p className="text-red-600">{"password don't have a capital letter"}</p>}
+            
           </div>
           <div className="w-full">
             <label htmlFor="password">
