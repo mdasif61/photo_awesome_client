@@ -18,7 +18,7 @@ const Navbar = () => {
   return (
     <div className="bg-green-900 sticky top-0 z-50 md:h-[90px] h-[50px] w-full flex items-center justify-between">
       <Container>
-        <div className=" flex items-center justify-between w-[1280px] px-6">
+        <div className=" flex md:h-[90px] h-[50px] items-center justify-between w-[1280px] px-6">
           <div
             onClick={() => setOpen(!open)}
             className="text-white flex justify-between items-center w-full md:hidden"
@@ -34,7 +34,7 @@ const Navbar = () => {
                 </span>
               )}
             </span>
-            {!open ? (
+            {/* {!open ? (
               <div className="md:hidden">
                 <h1 className="text-white font-semibold text-lg">
                   PhotoAwesome
@@ -42,7 +42,7 @@ const Navbar = () => {
               </div>
             ) : (
               <img className="w-12 mr-3" src={navLogo} alt="" />
-            )}
+            )} */}
           </div>
           <div
             className={`md:flex ${
@@ -78,22 +78,21 @@ const Navbar = () => {
                 }
                 to="/alltoys"
               >
-                All Toys
+                Instructors
+              </NavLink>
+              <NavLink
+                className={({ isActive }) =>
+                  isActive
+                    ? "text-green-500 mx-4 block my-3 md:my-0 py-1 px-2 border-b border-green-500"
+                    : "py-1 text-gray-300 px-2 my-3 md:my-0 mx-4 block"
+                }
+                to="/alltoys"
+              >
+                Classes
               </NavLink>
 
               {user && (
                 <>
-                  <NavLink
-                    className={({ isActive }) =>
-                      isActive
-                        ? "text-green-500 mx-4 py-1 my-3 md:my-0 px-2 block border-b bgreenorange-500"
-                        : "py-1 text-gray-300 px-2 my-3 md:my-0 mx-4 block"
-                    }
-                    to="/mytoys"
-                  >
-                    My Toys
-                  </NavLink>
-
                   <NavLink
                     className={({ isActive }) =>
                       isActive
@@ -102,25 +101,14 @@ const Navbar = () => {
                     }
                     to="/addtoy"
                   >
-                    Add A Toy
+                    Dashboard
                   </NavLink>
                 </>
               )}
 
-              <NavLink
-                className={({ isActive }) =>
-                  isActive
-                    ? "text-green-500 mx-4 py-1 px-2 my-3 md:my-0 block border-b border-green-500"
-                    : "py-1 text-gray-300 px-2 mx-4 my-3 md:my-0 block"
-                }
-                to="/blog"
-              >
-                Blog
-              </NavLink>
-
               {!user && (
                 <NavLink className="ml-4" to="/login">
-                  <button className="btn bg-orange-600 rounded-full hover:bg-orange-500 w-28">
+                  <button className="mx-4 btn mt-4 md:mt-0 bg-green-500 text-white border-none">
                     Login
                   </button>
                 </NavLink>
