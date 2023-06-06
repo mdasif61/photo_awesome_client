@@ -3,11 +3,18 @@ import Main from "../LayOut/Main";
 import LoginLayout from "../LayOut/LoginLayout";
 import Login from "../Shared/Login";
 import Register from "../Shared/Register";
+import Home from "../Home/Home";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Main></Main>,
+    children:[
+        {
+            path:'/',
+            element:<Home></Home>
+        }
+    ]
   },
   {
     path:'/',
