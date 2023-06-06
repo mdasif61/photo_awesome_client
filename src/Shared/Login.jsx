@@ -4,6 +4,7 @@ import googleLoginIcon from "../assets/Icon/GoogleLogin.png";
 import toast from "react-hot-toast";
 import { AuthContext } from "./Context";
 import { useForm } from "react-hook-form";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const Login = () => {
   const [error, setError] = useState("");
@@ -12,17 +13,18 @@ const Login = () => {
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
   const { handleSubmit, register } = useForm();
+  const [show, setShow] = useState(false);
 
   const onSubmit = (data) => {
-    signIn(data.email,data.password)
-    .then(result=>{
-        console.log(result)
-        toast.success('Successfully logged')
-        navigate(from)
-    })
-    .catch(error=>{
-        setError(error.message)
-    })
+    signIn(data.email, data.password)
+      .then((result) => {
+        console.log(result);
+        toast.success("Successfully logged");
+        navigate(from);
+      })
+      .catch((error) => {
+        setError(error.message);
+      });
   };
 
   const handleGoogleLogin = () => {
@@ -58,7 +60,7 @@ const Login = () => {
             />
           </div>
 
-          <div className="w-full">
+          <div className="w-full relative">
             <label htmlFor="password">
               <span className="text-orange-600 font-semibold ml-2">
                 Password
@@ -67,11 +69,16 @@ const Login = () => {
             <br />
             <input
               className="w-full h-12 py-2 px-4 focus:outline-none border-b-2 border-orange-500 bg-transparent focus:bg-orange-100 focus:bg-opacity-40 text-white mb-4 my-2"
-              type="password"
+              type={`${show?"text":"password"}`}
               {...register("password")}
               id=""
               placeholder="Enter Your Password"
             />
+            <span onClick={()=>setShow(!show)} className="text-gray-400 top-12 right-5 absolute">
+              {
+                show?<FaEye />:<FaEyeSlash></FaEyeSlash>
+              }
+            </span>
           </div>
           <div className="w-full">
             <input

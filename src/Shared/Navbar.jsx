@@ -108,7 +108,7 @@ const Navbar = () => {
 
               {!user && (
                 <NavLink className="ml-4" to="/login">
-                  <button className="mx-4 btn mt-4 md:mt-0 bg-green-500 text-white border-none">
+                  <button className="mx-4 btn mt-4 md:mt-0 bg-green-500 text-white border-none hover:text-green-500">
                     Login
                   </button>
                 </NavLink>
@@ -135,7 +135,7 @@ const Navbar = () => {
               <div>
                 <button
                   onClick={handleLogOut}
-                  className="mx-4 btn mt-4 md:mt-0 bg-green-500 text-white border-none"
+                  className="mx-4 btn mt-4 md:mt-0 bg-green-500 text-white border-none hover:text-green-500"
                 >
                   Logout
                 </button>
