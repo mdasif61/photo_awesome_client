@@ -7,7 +7,7 @@ const AddClass = () => {
     formState: { errors },
   } = useForm();
   const onSubmit = (data) => {
-    console.log(data);
+    
   };
 
   return (
@@ -27,7 +27,7 @@ const AddClass = () => {
               type="text"
               id=""
               placeholder="Enter Your Class Name"
-              {...register('className',{required:true})}
+              {...register('name',{required:true})}
             />
           </div>
 
@@ -41,7 +41,7 @@ const AddClass = () => {
               type="text"
               id=""
               placeholder="Instructor Name"
-              {...register('name')}
+              {...register('instructor',{required:true})}
             />
           </div>
 
