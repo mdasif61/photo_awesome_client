@@ -46,7 +46,14 @@ const Register = () => {
   const handleGoogleRegister = () => {
     googleLogin()
       .then((result) => {
-        console.log(result);
+        const user=result.user;
+        const saveUser ={name:user.displayName, email:user.email}
+        axios.post('http://localhost:5000/users', saveUser )
+        .then(res=>{
+          if(res.data.insertedId){
+            alert('success')
+          }
+        })
         toast.success("Successfully Registerd ! Please login now");
         navigate("/login");
       })

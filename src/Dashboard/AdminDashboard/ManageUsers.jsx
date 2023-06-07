@@ -13,10 +13,10 @@ const ManageUsers = () => {
   });
   console.log(users);
   return (
-    <div>
-      <h1>Mangage Users</h1>
+    <div className="w-8/12 mx-auto">
+      <h1 className="text-2xl font-bold text-center mb-5">User Management</h1>
       <div className="overflow-x-auto">
-        <table className="table table-zebra">
+        <table className="table">
           <thead>
             <tr>
               <th>#</th>
@@ -26,12 +26,21 @@ const ManageUsers = () => {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <th>1</th>
-              <td>Cy Ganderton</td>
-              <td>Quality Control Specialist</td>
-              <td>Blue</td>
-            </tr>
+            {users.map((user, index) => (
+              <tr key={user._id}>
+                <th>{index + 1}</th>
+                <th>{user.name}</th>
+                <td>{user.email}</td>
+                <td>
+                  <button className="btn btn-warning btn-sm mr-2">
+                    Make Admin
+                  </button>
+                  <button className="btn btn-primary btn-sm">
+                    Make Instructor
+                  </button>
+                </td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>
