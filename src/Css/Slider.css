@@ -1,3 +1,11 @@
-.parallax-bg {
-  background-image: url("https://i.ibb.co/9Nspfgd/slideImg.jpg");
+.bgColor {
+  background-image:linear-gradient(to top, black,rgba(0, 44, 0, 0.507));
+}
+.bgColor h1{
+  line-height: 60px;
+}
+@media screen and (max-width:576px) {
+  .bgColor h1{
+    line-height: 30px;
+  }
 }
