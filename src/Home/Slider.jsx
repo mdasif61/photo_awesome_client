@@ -41,7 +41,7 @@ const Slider = () => {
           <div>
             <span className="w-full h-full justify-center items-start flex-col bgColor absolute z-50 flex  md:p-24 p-16">
               <h1 className="md:text-5xl text-2xl font-bold text-white">Exploring Photography <br />Through Nature and Culture</h1>
-              <p className="text-base md:my-5 my-2 text-white">Explore Nature and Culture Through Photography": Embark on an exciting <br />photography adventure where you'll capture the beauty of nature and <br />immerse yourself in different cultures, guided by seasoned <br />photographers and surrounded by fellow enthusiasts.</p>
+              <p className="text-base md:my-5 my-2 text-white">Embark on an exciting photography adventure where you'll capture the beauty <br/>of nature and immerse yourself in different cultures, guided by seasoned <br />photographers and surrounded by fellow enthusiasts.</p>
               <button className="btn btn-sm md:btn-lg bg-green-500 text-white hover:text-green-500 border-none">Explore More</button>
             </span>
             <img className="w-full relative" src={slide02} alt="" />

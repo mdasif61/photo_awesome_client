@@ -16,7 +16,7 @@ const Navbar = () => {
   };
 
   return (
-    <div className="bg-green-900 sticky top-0 z-50 md:h-[90px] h-[50px] w-full flex items-center justify-between">
+    <div className="bg-green-900 border-b-2 border-green-300 sticky top-0 z-50 md:h-[90px] h-[50px] w-full flex items-center justify-between">
       <Container>
         <div className=" flex md:h-[90px] h-[50px] items-center justify-between w-[1280px] px-6">
           <div
@@ -86,7 +86,7 @@ const Navbar = () => {
                     ? "text-green-500 mx-4 block my-3 md:my-0 py-1 px-2 border-b border-green-500"
                     : "py-1 text-gray-300 px-2 my-3 md:my-0 mx-4 block"
                 }
-                to="/alltoys"
+                to="/classes"
               >
                 Classes
               </NavLink>
