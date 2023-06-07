@@ -1,6 +1,8 @@
 import { useForm } from "react-hook-form";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 
+const image_token=import.meta.env.VITE_UPLOAD_IMAGE;
+
 const AddClass = () => {
     const [axiosSecure]=useAxiosSecure()
   const {
@@ -9,7 +11,31 @@ const AddClass = () => {
     formState: { errors },
   } = useForm();
   const onSubmit = (data) => {
-    axiosSecure.post('/')
+     const hosting_images_url=`https://api.imgbb.com/1/upload?key=${image_token}`
+
+     const formData=new FormData()
+     formData.append('image', data.photo[0]);
+     fetch(hosting_images_url,{
+        method:'POST',
+        body:formData
+     })
+     .then(res=>res.json())
+     .then(imageRes=>{
+        console.log(imageRes.success)
+        if(imageRes.success){
+            const imageURL=imageRes.data.display_url;
+            const {name,instructor,email,price,seats}=data;
+            const addClass={name,instructor,email, price:parseFloat(price), seats, image:imageURL, status:'Pending'}
+
+            axiosSecure.post('/classes', addClass)
+            .then(data=>{
+                console.log(data)
+                if(data.data.insertedId){
+                    alert('added success')
+                }
+            })
+        }
+     })
   };
 
   return (
