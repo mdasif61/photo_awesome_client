@@ -13,7 +13,6 @@ const AddClass = () => {
   const {
     handleSubmit,
     register,
-    formState: { errors },
   } = useForm();
   const onSubmit = (data) => {
     const hosting_images_url = `https://api.imgbb.com/1/upload?key=${image_token}`;
@@ -26,7 +25,6 @@ const AddClass = () => {
     })
       .then((res) => res.json())
       .then((imageRes) => {
-        console.log(imageRes.success);
         if (imageRes.success) {
           const imageURL = imageRes.data.display_url;
           const { name, instructor, email, price, seats } = data;
