@@ -4,6 +4,7 @@ import googleLoginIcon from "../assets/Icon/GoogleLogin.png";
 import { AuthContext } from "./Context";
 import { useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
+import axios from "axios";
 
 const Register = () => {
   const [error, setError] = useState("");
@@ -24,7 +25,15 @@ const Register = () => {
       .then((result) => {
         console.log(result);
         updateData(data.name, data.photo)
-          .then((result) => {})
+          .then((result) => {
+            const users={name:data.name,email:data.email}
+            axios.post('http://localhost:5000/users', users)
+            .then(res=>{
+              if(res.data.insertedId){
+                // alert('added sucess users')
+              }
+            })
+          })
           .catch((error) => {});
         toast.success("Successfully Registerd ! Please login now");
         navigate("/login");

@@ -12,7 +12,7 @@ const MyClass = () => {
             const res=await axiosSecure.get(`/classes?email=${user?.email}`)
             return res.data;
         }
-        return []
+        
     })
     console.log(myClass)
     return (

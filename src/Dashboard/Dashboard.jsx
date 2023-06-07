@@ -3,6 +3,9 @@ import dashboardLogo from "../assets/Icon/awesomeIconOne.png";
 import "../Css/Dashboard.css";
 
 const Dashboard = () => {
+
+  const isAdmin = true;
+
   return (
     <div className="drawer lg:drawer-open">
       <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
@@ -22,12 +25,23 @@ const Dashboard = () => {
           <li>
             <img className="mb-5" src={dashboardLogo} alt="" />
           </li>
-          <li>
-            <Link to='/dashboard/addClass'>Add A Class</Link>
-          </li>
-          <li>
-            <Link to='/dashboard/myClass'>My Classes</Link>
-          </li>
+          {
+            isAdmin ? <>
+            <li>
+              <Link to='/dashboard/manageClass'>Manage Class</Link>
+            </li>
+            <li>
+              <Link to='/dashboard/manageUsers'>Manage Users</Link>
+            </li>
+            </> : <>
+              <li>
+                <Link to='/dashboard/addClass'>Add A Class</Link>
+              </li>
+              <li>
+                <Link to='/dashboard/myClass'>My Classes</Link>
+              </li>
+            </>
+          }
         </ul>
       </div>
     </div>
