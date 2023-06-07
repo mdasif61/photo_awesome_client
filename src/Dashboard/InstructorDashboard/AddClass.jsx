@@ -1,13 +1,15 @@
 import { useForm } from "react-hook-form";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const AddClass = () => {
+    const [axiosSecure]=useAxiosSecure()
   const {
     handleSubmit,
     register,
     formState: { errors },
   } = useForm();
   const onSubmit = (data) => {
-    
+    axiosSecure.post('/')
   };
 
   return (
