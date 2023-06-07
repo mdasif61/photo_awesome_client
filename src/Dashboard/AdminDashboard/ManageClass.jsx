@@ -2,10 +2,15 @@ import axios from "axios";
 import useClasses from "../../hooks/useClasses";
 
 const ManageClass = () => {
-  const { classes } = useClasses();
+  const { classes, refetch } = useClasses();
 
   const handleApprove=(id)=>{
-    axios.patch(`http://localhost:5000/classes/${id}`,{status:'Approved'})
+    axios.patch(`http://localhost:5000/classes/${id}`)
+    .then(res=>{
+      if(res.data.modifiedCount>0){
+        refetch()
+      }
+    })
   }
 
   return (
@@ -44,8 +49,8 @@ const ManageClass = () => {
               <th>${singleClass.price}</th>
               <th>{singleClass.status}</th>
               <th>
-                <button onClick={()=>handleApprove(singleClass._id)} className="btn btn-success btn-sm">Approve</button>
-                <button className="btn btn-sm mx-2">Deny</button>
+                <button onClick={()=>handleApprove(singleClass._id)} className="btn btn-success btn-sm">Approve</button><br/>
+                <button className="btn btn-sm my-2">Deny</button><br/>
                 <button className="btn btn-sm">Send Feedback</button>
               </th>
             </tr>
