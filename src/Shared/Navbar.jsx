@@ -99,7 +99,7 @@ const Navbar = () => {
                         ? "text-green-500 mx-4 py-1 px-2 my-3 md:my-0 border-b block bgreenorange-500"
                         : "py-1 text-gray-300 px-2 my-3 md:my-0 mx-4 block"
                     }
-                    to="/addtoy"
+                    to="/dashboard"
                   >
                     Dashboard
                   </NavLink>

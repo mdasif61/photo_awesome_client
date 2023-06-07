@@ -5,6 +5,7 @@ import Login from "../Shared/Login";
 import Register from "../Shared/Register";
 import Home from "../Home/Home";
 import Classes from "../pages/Classes";
+import Dashboard from "../Dashboard/Dashboard";
 
 const router = createBrowserRouter([
   {
@@ -34,6 +35,10 @@ const router = createBrowserRouter([
             element:<Register></Register>
         }
     ]
+  },
+  {
+    path:'/dashboard',
+    element:<Dashboard></Dashboard>
   }
 ]);
 
