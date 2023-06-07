@@ -13,7 +13,7 @@ const ManageUsers = () => {
   });
   console.log(users);
   return (
-    <div className="w-8/12 mx-auto">
+    <div className="md:w-8/12 w-full p-5 mx-auto">
       <h1 className="text-2xl font-bold text-center mb-5">User Management</h1>
       <div className="overflow-x-auto">
         <table className="table">

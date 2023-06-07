@@ -51,7 +51,7 @@ const Register = () => {
         axios.post('http://localhost:5000/users', saveUser )
         .then(res=>{
           if(res.data.insertedId){
-            alert('success')
+            // alert('success')
           }
         })
         toast.success("Successfully Registerd ! Please login now");
