@@ -2,12 +2,13 @@ import { Link, Outlet } from "react-router-dom";
 import dashboardLogo from "../assets/Icon/awesomeIconOne.png";
 import "../Css/Dashboard.css";
 import useAdmin from "../hooks/useAdmin";
+import useInstructor from "../hooks/useInstructor";
 
 const Dashboard = () => {
 
   // const isAdmin = true;
-  const {isAdmin}=useAdmin()
-  console.log(isAdmin)
+  const { isAdmin } = useAdmin()
+  const { isInstructor } = useInstructor()
 
   return (
     <div className="drawer lg:drawer-open">
@@ -25,18 +26,23 @@ const Dashboard = () => {
       <div className="drawer-side">
         <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
         <ul className="menu p-4 w-80 h-full bgUl bg-base-200 text-base-content">
-          <li>
-            <img className="mb-5" src={dashboardLogo} alt="" />
-          </li>
+          <Link to='/'>
+            <li>
+              <img className="mb-5" src={dashboardLogo} alt="" />
+            </li>
+          </Link>
           {
-            isAdmin ? <>
-            <li>
-              <Link to='/dashboard/manageClass'>Manage Class</Link>
-            </li>
-            <li>
-              <Link to='/dashboard/manageUsers'>Manage Users</Link>
-            </li>
-            </> : <>
+            isAdmin && <>
+              <li>
+                <Link to='/dashboard/manageClass'>Manage Class</Link>
+              </li>
+              <li>
+                <Link to='/dashboard/manageUsers'>Manage Users</Link>
+              </li>
+            </>
+          }
+          {
+            isInstructor && <>
               <li>
                 <Link to='/dashboard/addClass'>Add A Class</Link>
               </li>
