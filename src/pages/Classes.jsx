@@ -13,7 +13,7 @@ const Classes = () => {
   const { user } = useContext(AuthContext);
 
   const handleSelect = (singleClass) => {
-    const { name, instructor, price, seats, _id } = singleClass;
+    const { name, instructor, price, seats, _id, image } = singleClass;
     const selectClass = {
       name,
       instructor,
@@ -21,6 +21,7 @@ const Classes = () => {
       seats,
       selectId: _id,
       email: user?.email,
+      image
     };
     axiosSecure.post("/selectedClass", selectClass).then((res) => {
       if (res.data.message) {

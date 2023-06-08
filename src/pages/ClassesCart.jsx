@@ -1,5 +1,5 @@
 const ClassesCart = ({ singleClass, handleSelect }) => {
-  const { name, instructor, price, status, seats, _id } = singleClass;
+  const { name, instructor, price, status, seats, _id, image } = singleClass;
   return (
     <div className="bg-green-800 flex flex-col justify-between text-white p-5 bg-opacity-50">
       <div>
