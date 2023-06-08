@@ -49,7 +49,7 @@ const Context = ({ children }) => {
 
       if (currentUser && currentUser?.email) {
         axios
-          .post("http://localhost:5000/jwt", currentUser.user)
+          .post("http://localhost:5000/jwt", {email:currentUser.email})
           .then((res) => {
             localStorage.setItem("access_token", res.data.token);
             setLoading(false);

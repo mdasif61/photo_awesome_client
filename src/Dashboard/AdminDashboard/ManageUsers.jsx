@@ -1,9 +1,16 @@
 import axios from "axios";
-import useUsers from "../../hooks/useUsers";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
+import { useQuery } from "@tanstack/react-query";
+// import useUsers from "../../hooks/useUsers";
 
 const ManageUsers = () => {
 
-  const { users, refetch } = useUsers()
+  // const { users, refetch } = useUsers()
+  const [axiosSecure]=useAxiosSecure()
+  const {data:users=[], refetch}=useQuery(['users'], async()=>{
+    const res=await axiosSecure.get('/users')
+    return res.data
+  })
 
 
   const handleMakeAdmin = (id) => {
