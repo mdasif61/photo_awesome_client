@@ -13,8 +13,10 @@ const AddClass = () => {
   const {
     handleSubmit,
     register,
+    reset
   } = useForm();
   const onSubmit = (data) => {
+    console.log(data)
     const hosting_images_url = `https://api.imgbb.com/1/upload?key=${image_token}`;
     setAddLoading(true);
     const formData = new FormData();
@@ -39,6 +41,7 @@ const AddClass = () => {
           };
           axiosSecure.post("/classes", addClass).then((data) => {
             if (data.data.insertedId) {
+              reset()
               Swal.fire("Successfull Added Class", "success");
               setAddLoading(false);
             }
@@ -101,7 +104,7 @@ const AddClass = () => {
           </div>
 
           <div className="w-full">
-            <label htmlFor="seat">
+            <label htmlFor="seats">
               <span className="font-bold">Available Seats</span>
             </label>
             <br />

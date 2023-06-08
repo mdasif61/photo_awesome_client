@@ -17,7 +17,7 @@ const MyClass = () => {
     console.log(myClass)
     return (
         <div>
-            <h1>My Class</h1>
+            <h1>My Class : {myClass.length}</h1>
         </div>
     );
 };
