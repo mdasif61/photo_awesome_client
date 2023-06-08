@@ -1,8 +1,31 @@
 import { FaTrash } from "react-icons/fa";
 import useSelectedClass from "../../hooks/useSelectedClass";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
+import Swal from "sweetalert2";
 
 const MySelectedClass = () => {
   const { selectClass, refetch } = useSelectedClass();
+  const [axiosSecure] = useAxiosSecure();
+
+  const handleDelete = (id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Delete",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axiosSecure.delete(`/selectDelete/${id}`).then((res) => {
+            refetch()
+          if (res.data.deletedCoutn > 0) {
+            Swal.fire("Deleted!", "Your file has been deleted.", "success");
+          }
+        });
+      }
+    });
+  };
 
   return (
     <div className="p-12">
@@ -17,7 +40,10 @@ const MySelectedClass = () => {
           >
             <div className="bg-black relative rounded-md h-56 overflow-hidden">
               <img className="h-full w-full" src={select.image} alt="" />
-              <button className="btn absolute top-5 border-none right-5 text-red-600 bg-white rounded-full shadow-lg btn-sm">
+              <button
+                onClick={() => handleDelete(select._id)}
+                className="btn absolute top-5 border-none right-5 text-red-600 bg-white rounded-full shadow-lg btn-sm"
+              >
                 <FaTrash />
               </button>
             </div>
@@ -28,7 +54,7 @@ const MySelectedClass = () => {
               <h2 className="text-gray-600 font-semibold text-lg">
                 Price : ${select.price}
               </h2>
-              <h2 className="text-gray-600">
+              <h2 className="text-gray-600 my-2">
                 Instructor : {select.instructor}
               </h2>
             </div>
