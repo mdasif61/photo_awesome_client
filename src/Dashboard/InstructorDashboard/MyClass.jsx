@@ -6,7 +6,7 @@ import useAxiosSecure from "../../hooks/useAxiosSecure";
 const MyClass = () => {
   const { user } = useContext(AuthContext);
   const [axiosSecure] = useAxiosSecure();
-  const { data: myClass = [], refetch } = useQuery({
+  const { data: myClass = [], } = useQuery({
     queryKey: ["myclass", user?.email],
     queryFn: async () => {
       const res = await axiosSecure.get(`/myClass?email=${user?.email}`);
@@ -27,7 +27,7 @@ const MyClass = () => {
               Price :{classes.price}
             </h1>
             <h1 className="t">Available Seats :{classes.seats}</h1>
-            <h1 className={`badge ${classes.status=='Approved'&& 'badge-success'} ${classes.status=='Pending'&& 'badge-warning'} mt-3 p-3 font-semibold`}>{classes.status}</h1>
+            <h1 className={`badge ${classes.status=='Approved'&& 'badge-success'} ${classes.status=='Pending'&& 'badge-warning'} ${classes.status=='Denied'&& 'badge-error'} mt-3 p-3 font-semibold`}>{classes.status}</h1>
           </div>
         </div>
       ))}

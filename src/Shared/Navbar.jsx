@@ -10,13 +10,13 @@ import useInstructor from "../hooks/useInstructor";
 const Navbar = () => {
   const { logOut, user } = useContext(AuthContext);
   const [open, setOpen] = useState(false);
-  const { isAdmin } = useAdmin()
-  const { isInstructor } = useInstructor()
+  const { isAdmin } = useAdmin();
+  const { isInstructor } = useInstructor();
 
   const handleLogOut = () => {
     logOut()
-      .then((result) => { })
-      .catch((error) => { });
+      .then((result) => {})
+      .catch((error) => {});
   };
 
   return (
@@ -49,10 +49,11 @@ const Navbar = () => {
             )} */}
           </div>
           <div
-            className={`md:flex ${!open
-              ? "hidden"
-              : "bg-green-900 absolute md:static top-16 left-0 md:top-0 p-5 md:p-0 z-50"
-              } w-full items-center justify-center`}
+            className={`md:flex ${
+              !open
+                ? "hidden"
+                : "bg-green-900 absolute md:static top-16 left-0 md:top-0 p-5 md:p-0 z-50"
+            } w-full items-center justify-center`}
           >
             <div className="md:flex-1 flex">
               <img className="w-16 mr-3" src={navLogo} alt="" />
@@ -96,8 +97,8 @@ const Navbar = () => {
 
               {user && (
                 <>
-                  {
-                    isAdmin && <NavLink
+                  {isAdmin && (
+                    <NavLink
                       className={({ isActive }) =>
                         isActive
                           ? "text-green-500 mx-4 py-1 px-2 my-3 md:my-0 border-b block bgreenorange-500"
@@ -107,9 +108,9 @@ const Navbar = () => {
                     >
                       Dashboard
                     </NavLink>
-                  }
-                  {
-                    isInstructor && <NavLink
+                  )}
+                  {isInstructor && (
+                    <NavLink
                       className={({ isActive }) =>
                         isActive
                           ? "text-green-500 mx-4 py-1 px-2 my-3 md:my-0 border-b block bgreenorange-500"
@@ -119,9 +120,9 @@ const Navbar = () => {
                     >
                       Dashboard
                     </NavLink>
-                  }
-                  {
-                    !isInstructor && !isAdmin && <NavLink
+                  )}
+                  {!isInstructor && !isAdmin && (
+                    <NavLink
                       className={({ isActive }) =>
                         isActive
                           ? "text-green-500 mx-4 py-1 px-2 my-3 md:my-0 border-b block bgreenorange-500"
@@ -131,50 +132,49 @@ const Navbar = () => {
                     >
                       Dashboard
                     </NavLink>
-                  }
-                  
-            </>
+                  )}
+                </>
               )}
 
-            {!user && (
-              <NavLink className="ml-4" to="/login">
-                <button className="mx-4 btn mt-4 md:mt-0 bg-green-500 text-white border-none hover:text-green-500">
-                  Login
+              {!user && (
+                <NavLink className="ml-4" to="/login">
+                  <button className="mx-4 btn mt-4 md:mt-0 bg-green-500 text-white border-none hover:text-green-500">
+                    Login
+                  </button>
+                </NavLink>
+              )}
+            </div>
+            {user && (
+              <div className="mx-4 md:mx-0">
+                <div className="dropdown dropdown-end">
+                  <label
+                    tabIndex={0}
+                    className="btn btn-ghost btn-circle avatar"
+                  >
+                    <div
+                      title={user?.displayName}
+                      className="w-10 rounded-full"
+                    >
+                      <img src={user?.photoURL} />
+                    </div>
+                  </label>
+                </div>
+              </div>
+            )}
+            {user && (
+              <div>
+                <button
+                  onClick={handleLogOut}
+                  className="ml-4 btn mt-4 md:mt-0 bg-green-500 text-white border-none hover:text-green-500"
+                >
+                  Logout
                 </button>
-              </NavLink>
+              </div>
             )}
           </div>
-          {user && (
-            <div className="mx-4 md:mx-0">
-              <div className="dropdown dropdown-end">
-                <label
-                  tabIndex={0}
-                  className="btn btn-ghost btn-circle avatar"
-                >
-                  <div
-                    title={user?.displayName}
-                    className="w-10 rounded-full"
-                  >
-                    <img src={user?.photoURL} />
-                  </div>
-                </label>
-              </div>
-            </div>
-          )}
-          {user && (
-            <div>
-              <button
-                onClick={handleLogOut}
-                className="ml-4 btn mt-4 md:mt-0 bg-green-500 text-white border-none hover:text-green-500"
-              >
-                Logout
-              </button>
-            </div>
-          )}
         </div>
+      </Container>
     </div>
-      </Container >
-    </div >
   );
 };
 

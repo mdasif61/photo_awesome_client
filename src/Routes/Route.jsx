@@ -20,64 +20,84 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <Main></Main>,
-    children:[
-        {
-            path:'/',
-            element:<Home></Home>
-        },
-        {
-          path:'/classes',
-          element:<Classes></Classes>
-        }
-    ]
-  },
-  {
-    path:'/',
-    element:<LoginLayout></LoginLayout>,
-    children:[
-        {
-            path:'/login',
-            element:<Login></Login>
-        },
-        {
-            path:'/register',
-            element:<Register></Register>
-        }
-    ]
-  },
-  {
-    path:'/dashboard',
-    element:<PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
-    children:[
-      // student route
+    children: [
       {
-        path:'selectClass',
-        element:<MySelectedClass></MySelectedClass>
+        path: "/",
+        element: <Home></Home>,
       },
       {
-        path:'enrolledClass',
-        element:<MyEnrolledClass></MyEnrolledClass>
+        path: "/classes",
+        element: <Classes></Classes>,
+      },
+    ],
+  },
+  {
+    path: "/",
+    element: <LoginLayout></LoginLayout>,
+    children: [
+      {
+        path: "/login",
+        element: <Login></Login>,
+      },
+      {
+        path: "/register",
+        element: <Register></Register>,
+      },
+    ],
+  },
+  {
+    path: "/dashboard",
+    element: (
+      <PrivateRoute>
+        <Dashboard></Dashboard>
+      </PrivateRoute>
+    ),
+    children: [
+      // student route
+      {
+        path: "selectClass",
+        element: <MySelectedClass></MySelectedClass>,
+      },
+      {
+        path: "enrolledClass",
+        element: <MyEnrolledClass></MyEnrolledClass>,
       },
       // instructor route
       {
-        path:'addClass',
-        element:<InstructorPrivate><AddClass></AddClass></InstructorPrivate>
+        path: "addClass",
+        element: (
+          <InstructorPrivate>
+            <AddClass></AddClass>
+          </InstructorPrivate>
+        ),
       },
       {
-        path:'myClass',
-        element:<InstructorPrivate><MyClass></MyClass></InstructorPrivate>
+        path: "myClass",
+        element: (
+          <InstructorPrivate>
+            <MyClass></MyClass>
+          </InstructorPrivate>
+        ),
       },
       // admin route
       {
-        path:'manageClass',
-        element:<AdminPrivate><ManageClass></ManageClass></AdminPrivate>
+        path: "manageClass",
+        element: (
+          <AdminPrivate>
+            <ManageClass></ManageClass>
+          </AdminPrivate>
+        ),
       },
       {
-        path:'manageUsers',
-        element:<AdminPrivate><ManageUsers></ManageUsers></AdminPrivate>
-      }
-    ]
-  }
+        path: "manageUsers",
+        element: (
+          <AdminPrivate>
+            <ManageUsers></ManageUsers>
+          </AdminPrivate>
+        ),
+      },
+    ],
+  },
 ]);
 
 export default router;
