@@ -51,6 +51,16 @@ const Dashboard = () => {
               </li>
             </>
           }
+          {
+            !isInstructor && !isAdmin && <>
+            <li>
+              <Link to='/dashboard/selectClass'>My Selected Class</Link>
+            </li>
+            <li>
+              <Link to='/dashboard/enrolledClass'>My Enrolled Class</Link>
+            </li>
+            </>
+          }
         </ul>
       </div>
     </div>

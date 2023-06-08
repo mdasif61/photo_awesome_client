@@ -58,7 +58,7 @@ const Context = ({ children }) => {
         localStorage.removeItem("access_token");
       }
 
-      setLoading(false);
+      // setLoading(false);
     });
     return () => {
       return unSubscribe();
