@@ -1,10 +1,12 @@
 import { Link, Outlet } from "react-router-dom";
 import dashboardLogo from "../assets/Icon/awesomeIconOne.png";
 import "../Css/Dashboard.css";
+import useAdmin from "../hooks/useAdmin";
 
 const Dashboard = () => {
 
-  const isAdmin = true;
+  // const isAdmin = true;
+  const {isAdmin}=useAdmin()
 
   return (
     <div className="drawer lg:drawer-open">

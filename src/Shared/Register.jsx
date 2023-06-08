@@ -26,7 +26,7 @@ const Register = () => {
         console.log(result);
         updateData(data.name, data.photo)
           .then((result) => {
-            const users={name:data.name,email:data.email}
+            const users={name:data.name,email:data.email, status:'Student'}
             axios.post('http://localhost:5000/users', users)
             .then(res=>{
               if(res.data.insertedId){
@@ -47,7 +47,7 @@ const Register = () => {
     googleLogin()
       .then((result) => {
         const user=result.user;
-        const saveUser ={name:user.displayName, email:user.email}
+        const saveUser ={name:user.displayName, email:user.email, status:'Student'}
         axios.post('http://localhost:5000/users', saveUser )
         .then(res=>{
           if(res.data.insertedId){
