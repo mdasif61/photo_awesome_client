@@ -2,11 +2,13 @@ import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import { useContext, useEffect, useState } from "react";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { AuthContext } from "../../Shared/Context";
+import Swal from "sweetalert2";
+import { Link } from "react-router-dom";
 
 const Checkout = ({ payClass, price }) => {
   const [error, setError] = useState("");
   const [sectet, setSecret] = useState("");
-  const [processing,setProcessing]=useState(false)
+  const [processing, setProcessing] = useState(false);
   const { user } = useContext(AuthContext);
 
   const stripe = useStripe();
@@ -16,7 +18,7 @@ const Checkout = ({ payClass, price }) => {
   useEffect(() => {
     try {
       axiosSecure.post(`/create-payment-intent`, { price }).then((res) => {
-        setSecret(res.data.clientSecret); 
+        setSecret(res.data.clientSecret);
       });
     } catch (error) {
       console.log(error);
@@ -43,7 +45,7 @@ const Checkout = ({ payClass, price }) => {
     } else {
       setError("");
     }
-    setProcessing(true)
+    setProcessing(true);
     const { paymentIntent, error: confirmError } =
       await stripe.confirmCardPayment(sectet, {
         payment_method: {
@@ -57,21 +59,21 @@ const Checkout = ({ payClass, price }) => {
     if (confirmError) {
       setError(confirmError.message);
     }
-    setProcessing(false)
+    setProcessing(false);
     if (paymentIntent.status === "succeeded") {
       const paymentInfo = {
         email: user?.email,
         transactionId: paymentIntent.id,
         price: payClass.price,
         date: new Date(),
-        selectItem: payClass._id,
+        selectItems: payClass._id,
         classItems: payClass.selectId,
         className: payClass.name,
       };
       axiosSecure.post("/payments", paymentInfo).then((res) => {
         console.log(res.data);
-        if (res.data.result.insertedId) {
-          // display confirm
+        if (res.data.paymentSave.insertedId) {
+          Swal.fire("Payment Success!","Thank You", "success");
         }
       });
     }
