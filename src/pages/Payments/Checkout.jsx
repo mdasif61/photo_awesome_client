@@ -13,12 +13,16 @@ const Checkout = ({payClass}) => {
   const [axiosSecure]=useAxiosSecure()
 
   useEffect(()=>{
+  try {
     axiosSecure.post(`/create-payment-intent`,{price:payClass.price})
     .then(res=>{
         console.log(res);
         setSecret(res.data.clintSecret)
     })
-  },[axiosSecure,payClass.price])
+  } catch (error) {
+    console.log(error)
+  }
+  },[axiosSecure,payClass])
 
   const handleSubmit = async(event) => {
     event.preventDefault();
@@ -57,7 +61,27 @@ const Checkout = ({payClass}) => {
         setError(confirmError.message)
     }
 
+    if (paymentIntent.status === 'succeeded') {
+        const payment = {
+            email: user?.email,
+            transactionId: paymentIntent.id,
+            price:payClass.price,
+            date: new Date(),
+            selectItem: payClass._id,
+            classItems: payClass.selectId,
+            className:payClass.name
+        }
+        axiosSecure.post('/payments', payment)
+            .then(res => {
+                console.log(res.data);
+                if (res.data.result.insertedId) {
+                    // display confirm
+                }
+            })
+    }
+
   };
+  
 
   return (
     <form onSubmit={handleSubmit}>
