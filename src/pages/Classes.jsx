@@ -21,7 +21,7 @@ const Classes = () => {
       seats,
       selectId: _id,
       email: user?.email,
-      image
+      image,
     };
     axiosSecure.post("/selectedClass", selectClass).then((res) => {
       if (res.data.message) {
@@ -39,12 +39,16 @@ const Classes = () => {
           showConfirmButton: false,
           timer: 1500,
         });
+        axiosSecure.patch(`/seats/${singleClass._id}`,singleClass)
+        .then(res=>{
+          console.log(res)
+        })
       }
     });
   };
 
   return (
-    <div className="classBG">
+    <div>
       <Container>
         <div className="grid grid-cols-1 md:grid-cols-4 gap-5 py-10">
           {approvedClass.map((singleClass) => (

@@ -35,7 +35,7 @@ const AddClass = () => {
             instructor,
             email,
             price: parseFloat(price),
-            seats,
+            seats:parseInt(seats),
             image: imageURL,
             status: "Pending",
           };
