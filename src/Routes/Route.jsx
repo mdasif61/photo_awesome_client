@@ -15,6 +15,7 @@ import AdminPrivate from "../Shared/AdminPrivate";
 import InstructorPrivate from "../Shared/InstructorPrivate";
 import MySelectedClass from "../Dashboard/StudentDashboard/MySelectedClass";
 import MyEnrolledClass from "../Dashboard/StudentDashboard/MyEnrolledClass";
+import Payments from "../pages/Payments/Payments";
 
 const router = createBrowserRouter([
   {
@@ -61,6 +62,10 @@ const router = createBrowserRouter([
       {
         path: "enrolledClass",
         element: <MyEnrolledClass></MyEnrolledClass>,
+      },
+      {
+        path:'payments/:id',
+        element:<Payments></Payments>
       },
       // instructor route
       {

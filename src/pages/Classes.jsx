@@ -8,7 +8,7 @@ import { AuthContext } from "../Shared/Context";
 import Swal from "sweetalert2";
 
 const Classes = () => {
-  const { approvedClass } = useApproveClass();
+  const { approvedClass, refetch } = useApproveClass();
   const [axiosSecure] = useAxiosSecure();
   const { user } = useContext(AuthContext);
 
@@ -41,7 +41,9 @@ const Classes = () => {
         });
         axiosSecure.patch(`/seats/${singleClass._id}`,singleClass)
         .then(res=>{
-          console.log(res)
+          if(res.data.modifiedCount>0){
+            refetch()
+          }
         })
       }
     });

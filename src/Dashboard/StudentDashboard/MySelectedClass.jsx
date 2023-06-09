@@ -2,6 +2,7 @@ import { FaTrash } from "react-icons/fa";
 import useSelectedClass from "../../hooks/useSelectedClass";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
+import { Link } from "react-router-dom";
 
 const MySelectedClass = () => {
   const { selectClass, refetch } = useSelectedClass();
@@ -18,7 +19,7 @@ const MySelectedClass = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         axiosSecure.delete(`/selectDelete/${id}`).then((res) => {
-            refetch()
+          refetch();
           if (res.data.deletedCoutn > 0) {
             Swal.fire("Deleted!", "Your file has been deleted.", "success");
           }
@@ -59,9 +60,11 @@ const MySelectedClass = () => {
               </h2>
             </div>
             <div>
-              <button className="btn bg-green-500 text-white text-lg btn-block">
-                Pay
-              </button>
+              <Link to={`/dashboard/payments/${select._id}`}>
+                <button className="btn bg-green-500 text-white text-lg btn-block">
+                  Pay
+                </button>
+              </Link>
             </div>
           </div>
         ))}
