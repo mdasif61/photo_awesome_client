@@ -3,7 +3,6 @@ import { useContext, useEffect, useState } from "react";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { AuthContext } from "../../Shared/Context";
 import Swal from "sweetalert2";
-import { Link } from "react-router-dom";
 
 const Checkout = ({ payClass, price }) => {
   const [error, setError] = useState("");
@@ -104,7 +103,7 @@ const Checkout = ({ payClass, price }) => {
             type="submit"
             disabled={!stripe || !sectet || processing}
           >
-            Pay ${price}
+            {processing?"Processing":`Pay ${price}`}
           </button>
         </div>
       </form>

@@ -33,13 +33,13 @@ const MySelectedClass = () => {
       <h1 className="text-xl font-bold mb-5 text-gray-600">
         Total Select Class : {selectClass.length}
       </h1>
-      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-5">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
         {selectClass.map((select) => (
           <div
             key={select._id}
             className="p-5 border rounded-md flex flex-col justify-between"
           >
-            <div className="bg-black relative rounded-md h-56 overflow-hidden">
+            <div className="bg-black relative rounded-md h-36 overflow-hidden">
               <img className="h-full w-full" src={select.image} alt="" />
               <button
                 onClick={() => handleDelete(select._id)}

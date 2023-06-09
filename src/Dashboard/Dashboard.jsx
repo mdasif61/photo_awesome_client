@@ -3,6 +3,8 @@ import dashboardLogo from "../assets/Icon/awesomeIconOne.png";
 import "../Css/Dashboard.css";
 import useAdmin from "../hooks/useAdmin";
 import useInstructor from "../hooks/useInstructor";
+import Container from "../container/Container";
+import { FaBook, FaClipboard, FaHistory } from "react-icons/fa";
 
 const Dashboard = () => {
 
@@ -11,7 +13,8 @@ const Dashboard = () => {
   const { isInstructor } = useInstructor()
 
   return (
-    <div className="drawer lg:drawer-open">
+    <Container>
+      <div className="drawer lg:drawer-open">
       <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
       <div className="drawer-content flex flex-col items-center justify-center">
         {/* Page content here */}
@@ -33,37 +36,41 @@ const Dashboard = () => {
           </Link>
           {
             isAdmin && <>
-              <li>
+              <li className="text-lg font-semibold">
                 <Link to='/dashboard/manageClass'>Manage Class</Link>
               </li>
-              <li>
+              <li className="text-lg font-semibold">
                 <Link to='/dashboard/manageUsers'>Manage Users</Link>
               </li>
             </>
           }
           {
             isInstructor && <>
-              <li>
+              <li className="text-lg font-semibold">
                 <Link to='/dashboard/addClass'>Add A Class</Link>
               </li>
-              <li>
+              <li className="text-lg font-semibold">
                 <Link to='/dashboard/myClass'>My Classes</Link>
               </li>
             </>
           }
           {
             !isInstructor && !isAdmin && <>
-            <li>
-              <Link to='/dashboard/selectClass'>My Selected Class</Link>
+            <li className="text-lg font-semibold">
+              <Link to='/dashboard/selectClass'><FaBook/> My Selected Class</Link>
             </li>
-            <li>
-              <Link to='/dashboard/enrolledClass'>My Enrolled Class</Link>
+            <li className="text-lg font-semibold">
+              <Link to='/dashboard/enrolledClass'><FaClipboard/> My Enrolled Class</Link>
+            </li>
+            <li className="text-lg font-semibold">
+              <Link to='/dashboard/history'><FaHistory/> Payment History</Link>
             </li>
             </>
           }
         </ul>
       </div>
     </div>
+    </Container>
   );
 };
 
