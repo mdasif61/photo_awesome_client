@@ -10,8 +10,8 @@ const Checkout = ({ payClass, price }) => {
   const [sectet, setSecret] = useState("");
   const [processing, setProcessing] = useState(false);
   const { user } = useContext(AuthContext);
-  const {refetch}=useApproveClass()
-  console.log(payClass)
+  const { refetch } = useApproveClass();
+  console.log(payClass);
 
   const stripe = useStripe();
   const elements = useElements();
@@ -107,13 +107,13 @@ const Checkout = ({ payClass, price }) => {
             },
           }}
         />
-        <div className="text-center">
+        <div className="text-center mt-10">
           <button
-            className="btn bg-green-600 mt-5 w-36 text-white"
+            className="btn bg-green-600 mt-5 btn-block text-white"
             type="submit"
             disabled={!stripe || !sectet || processing}
           >
-            {processing ? "Processing" : `Pay ${price}`}
+            {processing ? "Processing" : `Pay $${price}`}
           </button>
         </div>
       </form>

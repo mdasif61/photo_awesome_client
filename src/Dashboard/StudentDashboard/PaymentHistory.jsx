@@ -1,11 +1,11 @@
 import usePayments from "../../hooks/usePayments";
 
 const PaymentHistory = () => {
-  const { history, refetch } = usePayments();
+  const { history } = usePayments();
   console.log(history);
 
   return (
-    <div>
+    <div className="bg-white p-10 rounded-xl shadow-2xl">
       <div className="overflow-x-auto">
         <table className="table">
           <thead>

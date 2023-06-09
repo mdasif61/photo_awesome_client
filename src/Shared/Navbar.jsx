@@ -80,7 +80,7 @@ const Navbar = () => {
                     ? "text-green-500 mx-4 block my-3 md:my-0 py-1 px-2 border-b border-green-500"
                     : "py-1 text-gray-300 px-2 my-3 md:my-0 mx-4 block"
                 }
-                to="/alltoys"
+                to="/instructor"
               >
                 Instructors
               </NavLink>
