@@ -3,12 +3,15 @@ import { useContext, useEffect, useState } from "react";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { AuthContext } from "../../Shared/Context";
 import Swal from "sweetalert2";
+import useApproveClass from "../../hooks/useApproveClass";
 
 const Checkout = ({ payClass, price }) => {
   const [error, setError] = useState("");
   const [sectet, setSecret] = useState("");
   const [processing, setProcessing] = useState(false);
   const { user } = useContext(AuthContext);
+  const {refetch}=useApproveClass()
+  console.log(payClass)
 
   const stripe = useStripe();
   const elements = useElements();
@@ -72,7 +75,14 @@ const Checkout = ({ payClass, price }) => {
       axiosSecure.post("/payments", paymentInfo).then((res) => {
         console.log(res.data);
         if (res.data.paymentSave.insertedId) {
-          Swal.fire("Payment Success!","Thank You", "success");
+          axiosSecure
+            .patch(`/seats/${payClass.selectId}`, payClass)
+            .then((res) => {
+              if (res.data.modifiedCount > 0) {
+                refetch();
+              }
+            });
+          Swal.fire("Payment Success!", "Thank You", "success");
         }
       });
     }
@@ -103,7 +113,7 @@ const Checkout = ({ payClass, price }) => {
             type="submit"
             disabled={!stripe || !sectet || processing}
           >
-            {processing?"Processing":`Pay ${price}`}
+            {processing ? "Processing" : `Pay ${price}`}
           </button>
         </div>
       </form>
