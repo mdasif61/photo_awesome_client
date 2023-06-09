@@ -1,10 +1,12 @@
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
+import { AuthContext } from "../../Shared/Context";
 
 const Checkout = ({payClass}) => {
-
+    const [error,setError]=useState('')
     const [sectet,setSecret]=useState('')
+    const {user}=useContext(AuthContext)
 
   const stripe = useStripe();
   const elements = useElements();
@@ -18,7 +20,7 @@ const Checkout = ({payClass}) => {
     })
   },[axiosSecure,payClass.price])
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async(event) => {
     event.preventDefault();
 
     if (!stripe || !elements) {
@@ -28,6 +30,33 @@ const Checkout = ({payClass}) => {
     if (card == null) {
       return;
     }
+
+    const {error}=await stripe.createPaymentMethod({
+        type:'card',
+        card
+    })
+    if(error){
+        setError(error.message)
+    }else{
+        setError('')
+    }
+    
+    const {paymentIntent, error:confirmError}=await stripe.confirmCardPayment(
+        sectet,
+        {
+            payment_method:{
+                card:card,
+                billing_details:{
+                    name:user?.displayName || 'unknown',
+                    email:user?.email || 'unknown'
+                }
+            }
+        }
+    )
+    if(confirmError){
+        setError(confirmError.message)
+    }
+
   };
 
   return (
