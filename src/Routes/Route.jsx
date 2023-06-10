@@ -18,6 +18,7 @@ import MyEnrolledClass from "../Dashboard/StudentDashboard/MyEnrolledClass";
 import Payments from "../pages/Payments/Payments";
 import PaymentHistory from "../Dashboard/StudentDashboard/PaymentHistory";
 import Instructor from "../pages/Instructor";
+import FeedBack from "../pages/FeedBack";
 
 const router = createBrowserRouter([
   {
@@ -111,6 +112,10 @@ const router = createBrowserRouter([
           </AdminPrivate>
         ),
       },
+      {
+        path:'feedback/:id',
+        element:<FeedBack></FeedBack>
+      }
     ],
   },
 ]);

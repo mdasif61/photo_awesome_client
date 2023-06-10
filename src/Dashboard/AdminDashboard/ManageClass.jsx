@@ -1,5 +1,6 @@
 import axios from "axios";
 import useClasses from "../../hooks/useClasses";
+import { Link } from "react-router-dom";
 
 const ManageClass = () => {
   const { classes, refetch } = useClasses();
@@ -61,7 +62,9 @@ const ManageClass = () => {
                 <th>
                   <button disabled={singleClass.status === 'Denied' || singleClass.status === 'Approved'} onClick={() => handleApprove(singleClass._id)} className="btn btn-success btn-sm">Approve</button><br />
                   <button onClick={() => handleDenied(singleClass._id)} disabled={singleClass.status == 'Approved' || singleClass.status === 'Denied'} className="btn btn-sm my-2">Deny</button><br />
-                  <button className="btn btn-sm">Send Feedback</button>
+                  <Link to={`/dashboard/feedback/${singleClass._id}`}>
+                    <button className="btn btn-sm">Send Feedback</button>
+                  </Link>
                 </th>
               </tr>
             ))}
@@ -69,7 +72,7 @@ const ManageClass = () => {
         </table>
       </div>
     </> : <>
-    <h1 className="text-2xl font-bold text-gray-500">Not Found Classes</h1>
+      <h1 className="text-2xl font-bold text-gray-500">Not Found Classes</h1>
     </>
   );
 };
