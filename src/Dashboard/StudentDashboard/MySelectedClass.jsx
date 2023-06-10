@@ -29,7 +29,7 @@ const MySelectedClass = () => {
   };
 
   return (
-    <div className="p-12">
+    selectClass.length>0 ? <> <div className="p-12">
       <h1 className="text-xl font-bold mb-5 text-gray-600">
         Total Select Class : {selectClass.length}
       </h1>
@@ -69,7 +69,9 @@ const MySelectedClass = () => {
           </div>
         ))}
       </div>
-    </div>
+    </div></> : <>
+    <h1 className="text-xl font-bold text-gray-500">Select Class Not Found</h1>
+    </>
   );
 };
 
