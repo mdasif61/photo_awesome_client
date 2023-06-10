@@ -14,7 +14,7 @@ const PopularClass = () => {
 
   return (
     <div className="my-20">
-      <h1 className="text-2xl font-bold text-center">Popular Classes</h1>
+      <h1 className="text-2xl font-bold text-green-600 text-center">Popular Classes</h1>
       <Container>
         <div className="grid grid-cols-1 gap-5 md:grid-cols-3 my-10">
           {populars.slice(0, 6).map((popular) => (
