@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import Container from "../container/Container";
+import { FaEnvelope } from "react-icons/fa";
 
 const Instructor = () => {
   const [instructors, setInstructors] = useState([]);
@@ -14,24 +15,18 @@ const Instructor = () => {
   return (
     <div className="bg-green-100 min-h-screen">
       <Container>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 py-10">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-5 py-10">
           {instructors.map((instructor) => (
-            <div
-              key={instructor._id}
-              className="card card-side bg-base-100 shadow-xl"
-            >
+            <div key={instructor._id} className="card bg-base-100 shadow-xl">
               <figure>
-                <img
-                  src="/images/stock/photo-1635805737707-575885ab0820.jpg"
-                  alt="Movie"
-                />
+                <img className="w-full" src={instructor.image} alt="Shoes" />
               </figure>
               <div className="card-body">
-                <h2 className="card-title">New movie is released!</h2>
-                <p>Click the button to watch on Jetflix app.</p>
-                <div className="card-actions justify-end">
-                  <button className="btn btn-primary">Watch</button>
-                </div>
+                <h2 className="card-title border-b-2 pb-3">{instructor.name}</h2>
+                <p className="text-lg mt-3">
+                  <FaEnvelope />
+                  {instructor.email}
+                </p>
               </div>
             </div>
           ))}

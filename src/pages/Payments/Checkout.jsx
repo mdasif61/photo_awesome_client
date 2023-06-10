@@ -69,6 +69,8 @@ const Checkout = ({ payClass, price }) => {
         selectItems: payClass._id,
         classItems: payClass.selectId,
         className: payClass.name,
+        image:payClass.image,
+        instructor:payClass.instructor
       };
       axiosSecure.post("/payments", paymentInfo).then((res) => {
         console.log(res.data);

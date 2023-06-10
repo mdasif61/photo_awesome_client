@@ -9,12 +9,13 @@ const ClassesCart = ({ singleClass, handleSelect }) => {
 
   return (
     <div
-      className={`bg-white ${
+      className={`bg-white hover:scale-95 duration-300 ${
         seats === 0 && "bg-red-300 text-red-500 border-red-600"
-       } text-black flex flex-col justify-between p-5 border border-green-500 rounded-md`}
+      } text-black flex flex-col justify-between p-5 border border-green-500 rounded-md`}
     >
       <div>
-        <h1 className="text-xl font-bold my-4">Class : {name}</h1>
+        <img className="rounded" src={image} alt="" />
+        <h1 className="text-xl font-bold my-4">{name}</h1>
         <h1>
           <span className="font-semibold">Instructor :</span> {instructor}
         </h1>

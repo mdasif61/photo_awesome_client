@@ -26,13 +26,17 @@ const Register = () => {
         console.log(result);
         updateData(data.name, data.photo)
           .then((result) => {
-            const users={name:data.name,email:data.email, status:'Student'}
-            axios.post('http://localhost:5000/users', users)
-            .then(res=>{
-              if(res.data.insertedId){
+            const users = {
+              name: data.name,
+              email: data.email,
+              image: data.photo,
+              status: "Student",
+            };
+            axios.post("http://localhost:5000/users", users).then((res) => {
+              if (res.data.insertedId) {
                 // alert('added sucess users')
               }
-            })
+            });
           })
           .catch((error) => {});
         toast.success("Successfully Registerd ! Please login now");
@@ -46,14 +50,18 @@ const Register = () => {
   const handleGoogleRegister = () => {
     googleLogin()
       .then((result) => {
-        const user=result.user;
-        const saveUser ={name:user.displayName, email:user.email, status:'Student'}
-        axios.post('http://localhost:5000/users', saveUser )
-        .then(res=>{
-          if(res.data.insertedId){
+        const user = result.user;
+        const saveUser = {
+          name: user.displayName,
+          email: user.email,
+          image: user.photoURL,
+          status: "Student",
+        };
+        axios.post("http://localhost:5000/users", saveUser).then((res) => {
+          if (res.data.insertedId) {
             // alert('success')
           }
-        })
+        });
         toast.success("Successfully Registerd ! Please login now");
         navigate("/login");
       })
@@ -109,15 +117,22 @@ const Register = () => {
               {...register("password", {
                 required: true,
                 minLength: 6,
-                pattern:/[A-Z]/,
+                pattern: /[A-Z]/,
               })}
               id=""
               placeholder="Enter Your Password"
             />
-            {errors.password?.type==='minLength' && <p className="text-red-600">{"password is less than 6 characters"}</p>}
-            
-            {errors.password?.type==='pattern' && <p className="text-red-600">{"password don't have a capital letter"}</p>}
-            
+            {errors.password?.type === "minLength" && (
+              <p className="text-red-600">
+                {"password is less than 6 characters"}
+              </p>
+            )}
+
+            {errors.password?.type === "pattern" && (
+              <p className="text-red-600">
+                {"password don't have a capital letter"}
+              </p>
+            )}
           </div>
           <div className="w-full">
             <label htmlFor="password">
