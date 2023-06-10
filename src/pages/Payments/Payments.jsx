@@ -1,16 +1,24 @@
 import { useParams } from "react-router-dom";
-import useSelectedClass from "../../hooks/useSelectedClass";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 import Checkout from "./Checkout";
+import { useEffect, useState } from "react";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const stripePromise = loadStripe(import.meta.env.VITE_PAYMENT_KEY);
 const Payments = () => {
+  const [axiosSecure]=useAxiosSecure()
   const { id } = useParams();
-  const { selectClass } = useSelectedClass();
-  const payClass = selectClass.find((select) => select._id === id);
+  const [payClass,setPayClass]=useState({})
   const amount = payClass.price;
-  const price = parseFloat(amount.toFixed(2));
+  const price = parseFloat(amount).toFixed(2);
+
+    useEffect(()=>{
+      axiosSecure.get(`/unique/${id}`)
+      .then(res=>{
+        setPayClass(res.data)
+      })
+    },[axiosSecure,id])
 
   return (
     <div className="w-full p-20 bg-white shadow-2xl rounded-2xl">
