@@ -5,6 +5,7 @@ import toast from "react-hot-toast";
 import { AuthContext } from "./Context";
 import { useForm } from "react-hook-form";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import axios from "axios";
 
 const Login = () => {
   const [error, setError] = useState("");
@@ -30,7 +31,18 @@ const Login = () => {
   const handleGoogleLogin = () => {
     googleLogin()
       .then((result) => {
-        console.log(result);
+        const user = result.user;
+        const saveUser = {
+          name: user.displayName,
+          email: user.email,
+          image: user.photoURL,
+          status: "Student",
+        };
+        axios.post("http://localhost:5000/users", saveUser).then((res) => {
+          if (res.data.insertedId) {
+            // alert('success')
+          }
+        });
         toast.success("Successfully logged!");
         navigate(from);
       })
@@ -69,15 +81,16 @@ const Login = () => {
             <br />
             <input
               className="w-full h-12 py-2 px-4 focus:outline-none border-b-2 border-orange-500 bg-transparent focus:bg-orange-100 focus:bg-opacity-40 text-white mb-4 my-2"
-              type={`${show?"text":"password"}`}
+              type={`${show ? "text" : "password"}`}
               {...register("password")}
               id=""
               placeholder="Enter Your Password"
             />
-            <span onClick={()=>setShow(!show)} className="text-gray-400 top-12 right-5 absolute">
-              {
-                show?<FaEye />:<FaEyeSlash></FaEyeSlash>
-              }
+            <span
+              onClick={() => setShow(!show)}
+              className="text-gray-400 top-12 right-5 absolute"
+            >
+              {show ? <FaEye /> : <FaEyeSlash></FaEyeSlash>}
             </span>
           </div>
           <div className="w-full">

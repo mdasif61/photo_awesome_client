@@ -18,7 +18,7 @@ const PopularInstructor = () => {
       </h1>
       <div className="grid grid-cols-1 my-20 md:grid-cols-3 gap-5">
         {instructors.map((instructor) => (
-          <div key={instructor._id} className="card bg-white shadow-xl">
+          <div key={instructor._id} className="card p-5 bg-white shadow-xl">
             <figure>
               <img
                 className="w-36 h-36 rounded-full"
