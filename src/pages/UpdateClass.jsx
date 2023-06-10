@@ -3,16 +3,16 @@ import useAxiosSecure from "../hooks/useAxiosSecure";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../Shared/Context";
 import { useForm } from "react-hook-form";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 const image_token = import.meta.env.VITE_UPLOAD_IMAGE;
 
 const UpdateClass = () => {
   const [updateData, setUpdateData] = useState({});
   const [axiosSecure] = useAxiosSecure();
-  const { user } = useContext(AuthContext);
   const [addLoading, setUpdateLoading] = useState(false);
   const { handleSubmit, register, reset } = useForm();
+  const navigate=useNavigate()
 
   const { id } = useParams();
   useEffect(() => {
@@ -46,8 +46,9 @@ const UpdateClass = () => {
           axiosSecure.patch(`/myclassUpdate/${id}`, addClass).then((data) => {
             if (data.data.modifiedCount>0) {
               reset();
-              Swal.fire("Successfull Update", "success");
+              Swal.fire("Successfully Update",'Thank You', "success");
               setUpdateLoading(false);
+              navigate('/dashboard/myClass')
             }
           });
         }

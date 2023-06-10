@@ -20,6 +20,7 @@ import PaymentHistory from "../Dashboard/StudentDashboard/PaymentHistory";
 import Instructor from "../pages/Instructor";
 import FeedBack from "../pages/FeedBack";
 import UpdateClass from "../pages/UpdateClass";
+import StudentPrivate from "../Shared/StudentPrivate";
 
 const router = createBrowserRouter([
   {
@@ -65,11 +66,11 @@ const router = createBrowserRouter([
       // student route
       {
         path: "selectClass",
-        element: <MySelectedClass></MySelectedClass>,
+        element: <StudentPrivate><MySelectedClass></MySelectedClass></StudentPrivate>,
       },
       {
         path: "enrolledClass",
-        element: <MyEnrolledClass></MyEnrolledClass>,
+        element: <StudentPrivate><MyEnrolledClass></MyEnrolledClass>,</StudentPrivate>
       },
       {
         path:'payments/:id',
