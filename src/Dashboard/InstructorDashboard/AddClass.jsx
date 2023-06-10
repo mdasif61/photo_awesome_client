@@ -16,7 +16,6 @@ const AddClass = () => {
     reset
   } = useForm();
   const onSubmit = (data) => {
-    console.log(data)
     const hosting_images_url = `https://api.imgbb.com/1/upload?key=${image_token}`;
     setAddLoading(true);
     const formData = new FormData();
@@ -38,6 +37,7 @@ const AddClass = () => {
             seats:parseInt(seats),
             image: imageURL,
             status: "Pending",
+            total_enroll:0,
           };
           axiosSecure.post("/classes", addClass).then((data) => {
             if (data.data.insertedId) {

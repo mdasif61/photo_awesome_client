@@ -11,20 +11,16 @@ const Checkout = ({ payClass, price }) => {
   const [processing, setProcessing] = useState(false);
   const { user } = useContext(AuthContext);
   const { refetch } = useApproveClass();
-  console.log(payClass);
 
   const stripe = useStripe();
   const elements = useElements();
   const [axiosSecure] = useAxiosSecure();
 
   useEffect(() => {
-    try {
-      axiosSecure.post(`/create-payment-intent`, { price }).then((res) => {
-        setSecret(res.data.clientSecret);
-      });
-    } catch (error) {
-      console.log(error);
-    }
+    axiosSecure.post(`/create-payment-intent`, { price })
+    .then((res) => {
+      setSecret(res.data.clientSecret);
+    });
   }, [axiosSecure, price]);
 
   const handleSubmit = async (event) => {
@@ -82,6 +78,10 @@ const Checkout = ({ payClass, price }) => {
                 refetch();
               }
             });
+            axiosSecure.patch(`/classes/${payClass.selectId}`, payClass)
+            .then(res=>{
+              console.log(res)
+            })
           Swal.fire("Payment Success!", "Thank You", "success");
         }
       });
