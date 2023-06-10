@@ -1,4 +1,4 @@
-import footerLogo from '../assets/Icon/awesomeIconOne.png';
+import footerLogo from "../assets/Icon/awesomeIconTwo.png";
 import {
   FaFacebook,
   FaGoogle,
@@ -9,16 +9,15 @@ import {
 
 const Footer = () => {
   return (
-    <div className="bg-green-900 md:p-12 p-6 rounded-b-2xl">
+    <div className="bg-green-900 md:p-12 p-6">
       <div className="md:flex justify-between">
         <div className="flex justify-center items-center mb-5 md:mb-0 flex-col">
           <img className="md:w-36 w-24" src={footerLogo} alt="" />
           <h1 className="text-white font-semibold md:text-xl text-lg">
-            Sports
-            <span className="text-orange-500 font-bold md:text-4xl text-2xl">
-              &
+            <span className="text-xl font-bold text-green-500 uppercase">
+              Photo
             </span>
-            Special
+            Awesome
           </h1>
         </div>
         <div>
@@ -132,7 +131,7 @@ const Footer = () => {
           </div>
         </div>
       </div>
-      <p className="text-center text-gray-500 mt-5">
+      <p className="text-center text-green-500 mt-5">
         Copy Right 2023 || All Rights Reseverd
       </p>
     </div>

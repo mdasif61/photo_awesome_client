@@ -2,6 +2,8 @@ import { useQuery } from "@tanstack/react-query";
 import { useContext } from "react";
 import { AuthContext } from "../../Shared/Context";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
+import { FaEdit } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const MyClass = () => {
   const { user } = useContext(AuthContext);
@@ -31,15 +33,22 @@ const MyClass = () => {
             </h1>
             <h1 className="t">Available Seats : {classes.seats}</h1>
             <h3 className="text-sm">Total Enrolled : {classes.total_enroll}</h3>
-            <h1
-              className={`badge ${
-                classes.status == "Approved" && "badge-success"
-              } ${classes.status == "Pending" && "badge-warning"} ${
-                classes.status == "Denied" && "badge-error"
-              } mt-3 p-3 font-semibold`}
-            >
-              {classes.status}
-            </h1>
+            <div className="flex justify-between">
+              <h1
+                className={`badge ${
+                  classes.status == "Approved" && "badge-success"
+                } ${classes.status == "Pending" && "badge-warning"} ${
+                  classes.status == "Denied" && "badge-error"
+                } mt-3 p-3 font-semibold`}
+              >
+                {classes.status}
+              </h1>
+              <Link to={`/dashboard/updateClass/${classes._id}`}>
+                <button className="btn bg-green-100 hover:bg-green-200 border-none">
+                  <FaEdit />
+                </button>
+              </Link>
+            </div>
           </div>
         </div>
       ))}

@@ -19,6 +19,7 @@ import Payments from "../pages/Payments/Payments";
 import PaymentHistory from "../Dashboard/StudentDashboard/PaymentHistory";
 import Instructor from "../pages/Instructor";
 import FeedBack from "../pages/FeedBack";
+import UpdateClass from "../pages/UpdateClass";
 
 const router = createBrowserRouter([
   {
@@ -94,6 +95,10 @@ const router = createBrowserRouter([
             <MyClass></MyClass>
           </InstructorPrivate>
         ),
+      },
+      {
+        path:"updateClass/:id",
+        element:<UpdateClass></UpdateClass>
       },
       // admin route
       {
