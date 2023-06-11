@@ -39,7 +39,7 @@ const Register = () => {
               }
             });
           })
-          .catch((error) => {});
+          .catch((error) => { });
         toast.success("Successfully Registerd ! Please login now");
         navigate("/login");
       })
@@ -118,8 +118,7 @@ const Register = () => {
               type="password"
               {...register("password", {
                 required: true,
-                minLength: 6,
-                pattern: /[A-Z]/,
+                validate:{hasSpecialChar:/^[^!@#$%^&*()_+={}[\]|\\:;"'<>,.?/~`]*$/.test || "password don't have a special character", hasUpperCase:/ ^[^A-Z]*$/.test || 'at least one uppercase'}
               })}
               id=""
               placeholder="Enter Your Password"
@@ -130,9 +129,14 @@ const Register = () => {
               </p>
             )}
 
-            {errors.password?.type === "pattern" && (
+            {errors.password && error.password.type==='hasSpecialChar' && (
               <p className="text-red-600">
-                {"password don't have a capital letter"}
+                {'errors.password.message'}
+              </p>
+            )}
+            {errors.password && error.password.type==='hasUpperCase' && (
+              <p className="text-red-600">
+                {errors.password.message}
               </p>
             )}
           </div>
