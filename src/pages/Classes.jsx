@@ -44,7 +44,7 @@ const Classes = () => {
   };
 
   return (
-    <div className="bg-green-50">
+    <div>
       <Container>
         <div className="grid grid-cols-1 md:grid-cols-4 gap-5 py-10">
           {approvedClass.map((singleClass) => (
