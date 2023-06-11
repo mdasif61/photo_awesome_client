@@ -7,9 +7,13 @@ import { Fade } from "react-awesome-reveal";
 const PopularInstructor = () => {
   const [instructors, setInstructors] = useState([]);
   useEffect(() => {
-    axios.get("http://localhost:5000/instructor").then((res) => {
-      setInstructors(res.data);
-    });
+    axios
+      .get(
+        "https://b7a12-summer-camp-server-side-mdasif61.vercel.app/instructor"
+      )
+      .then((res) => {
+        setInstructors(res.data);
+      });
   }, []);
 
   return (

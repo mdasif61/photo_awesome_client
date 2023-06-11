@@ -6,11 +6,13 @@ import { Helmet } from "react-helmet-async";
 
 const Instructor = () => {
   useEffect(() => {
-    window.scrollTo(0, 0)
-  }, [])
+    window.scrollTo(0, 0);
+  }, []);
   const [instructors, setInstructors] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:5000/allInstructor")
+    fetch(
+      "https://b7a12-summer-camp-server-side-mdasif61.vercel.app/allInstructor"
+    )
       .then((res) => res.json())
       .then((data) => {
         setInstructors(data);
@@ -31,7 +33,9 @@ const Instructor = () => {
                   <img className="w-full" src={instructor.image} alt="Shoes" />
                 </figure>
                 <div className="card-body">
-                  <h2 className="card-title border-b-2 pb-3">{instructor.name}</h2>
+                  <h2 className="card-title border-b-2 pb-3">
+                    {instructor.name}
+                  </h2>
                   <p className="text-lg mt-3">
                     <FaEnvelope />
                     {instructor.email}

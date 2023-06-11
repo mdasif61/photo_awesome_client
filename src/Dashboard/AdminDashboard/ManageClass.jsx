@@ -5,35 +5,42 @@ import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 
 const ManageClass = () => {
-
-  useEffect(()=>{
-    window.scrollTo(0,0)
-  },[])
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const { classes, refetch } = useClasses();
 
   const handleApprove = (id) => {
-    axios.patch(`http://localhost:5000/approved/${id}`)
-      .then(res => {
+    axios
+      .patch(
+        `https://b7a12-summer-camp-server-side-mdasif61.vercel.app/approved/${id}`
+      )
+      .then((res) => {
         if (res.data.modifiedCount > 0) {
-          refetch()
+          refetch();
         }
-      })
-  }
+      });
+  };
 
   const handleDenied = (id) => {
-    axios.patch(`http://localhost:5000/denied/${id}`)
-      .then(res => {
+    axios
+      .patch(
+        `https://b7a12-summer-camp-server-side-mdasif61.vercel.app/denied/${id}`
+      )
+      .then((res) => {
         if (res.data.modifiedCount > 0) {
-          refetch()
+          refetch();
         }
-      })
-  }
+      });
+  };
 
-  return (
-    classes.length > 0 ? <>
+  return classes.length > 0 ? (
+    <>
       <div className="overflow-x-auto w-full p-5">
-        <Helmet><title>Manage Classes | Photo Awesome</title></Helmet>
+        <Helmet>
+          <title>Manage Classes | Photo Awesome</title>
+        </Helmet>
         <table className="table">
           <thead>
             <tr className="text-center font-bold text-black">
@@ -67,8 +74,28 @@ const ManageClass = () => {
                 <th>${singleClass.price}</th>
                 <th>{singleClass.status}</th>
                 <th>
-                  <button disabled={singleClass.status === 'Denied' || singleClass.status === 'Approved'} onClick={() => handleApprove(singleClass._id)} className="btn btn-success btn-sm">Approve</button><br />
-                  <button onClick={() => handleDenied(singleClass._id)} disabled={singleClass.status == 'Approved' || singleClass.status === 'Denied'} className="btn btn-sm my-2">Deny</button><br />
+                  <button
+                    disabled={
+                      singleClass.status === "Denied" ||
+                      singleClass.status === "Approved"
+                    }
+                    onClick={() => handleApprove(singleClass._id)}
+                    className="btn btn-success btn-sm"
+                  >
+                    Approve
+                  </button>
+                  <br />
+                  <button
+                    onClick={() => handleDenied(singleClass._id)}
+                    disabled={
+                      singleClass.status == "Approved" ||
+                      singleClass.status === "Denied"
+                    }
+                    className="btn btn-sm my-2"
+                  >
+                    Deny
+                  </button>
+                  <br />
                   <Link to={`/dashboard/feedback/${singleClass._id}`}>
                     <button className="btn btn-sm">Send Feedback</button>
                   </Link>
@@ -78,7 +105,9 @@ const ManageClass = () => {
           </tbody>
         </table>
       </div>
-    </> : <>
+    </>
+  ) : (
+    <>
       <h1 className="text-2xl font-bold text-gray-500">Not Found Classes</h1>
     </>
   );

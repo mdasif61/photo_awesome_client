@@ -46,7 +46,7 @@ const AddClass = () => {
           axiosSecure.post("/classes", addClass).then((data) => {
             if (data.data.insertedId) {
               reset()
-              Swal.fire("Successfull Added Class", "success");
+              Swal.fire("Successfull Added Class",'Thank You', "success");
               setAddLoading(false);
             }
           });

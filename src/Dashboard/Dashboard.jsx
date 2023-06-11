@@ -7,7 +7,7 @@ import Container from "../container/Container";
 import { FaBook, FaClipboard, FaFolderMinus, FaHistory, FaPlusCircle, FaUsers } from "react-icons/fa";
 
 const Dashboard = () => {
-  // const isAdmin = true;
+  
   const { isAdmin } = useAdmin();
   const { isInstructor } = useInstructor();
 

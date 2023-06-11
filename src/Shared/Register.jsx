@@ -33,13 +33,18 @@ const Register = () => {
               image: data.photo,
               status: "Student",
             };
-            axios.post("http://localhost:5000/users", users).then((res) => {
-              if (res.data.insertedId) {
-                // alert('added sucess users')
-              }
-            });
+            axios
+              .post(
+                "https://b7a12-summer-camp-server-side-mdasif61.vercel.app/users",
+                users
+              )
+              .then((res) => {
+                if (res.data.insertedId) {
+                  // alert('added sucess users')
+                }
+              });
           })
-          .catch((error) => { });
+          .catch((error) => {});
         toast.success("Successfully Registerd ! Please login now");
         navigate("/login");
       })
@@ -58,11 +63,16 @@ const Register = () => {
           image: user.photoURL,
           status: "Student",
         };
-        axios.post("http://localhost:5000/users", saveUser).then((res) => {
-          if (res.data.insertedId) {
-            // alert('success')
-          }
-        });
+        axios
+          .post(
+            "https://b7a12-summer-camp-server-side-mdasif61.vercel.app/users",
+            saveUser
+          )
+          .then((res) => {
+            if (res.data.insertedId) {
+              // alert('success')
+            }
+          });
         toast.success("Successfully Registerd ! Please login now");
         navigate("/login");
       })
@@ -73,7 +83,9 @@ const Register = () => {
 
   return (
     <div className="min-h-screen flex items-center justify-center">
-      <Helmet><title>Register | Photo Awesome</title></Helmet>
+      <Helmet>
+        <title>Register | Photo Awesome</title>
+      </Helmet>
       <div className="bg-gray-900 border-2 border-gray-300 w-2/5 p-8 rounded-xl shadow-xl">
         <h1 className="text-center font-bold text-xl text-orange-500 mb-5">
           Register Please
@@ -118,7 +130,8 @@ const Register = () => {
               type="password"
               {...register("password", {
                 required: true,
-                validate:{hasSpecialChar:/^[^!@#$%^&*()_+={}[\]|\\:;"'<>,.?/~`]*$/.test || "password don't have a special character", hasUpperCase:/ ^[^A-Z]*$/.test || 'at least one uppercase'}
+                minLength: 6,
+                pattern: /(?=.*[A-Z])(?=.*[\W_]).*$/,
               })}
               id=""
               placeholder="Enter Your Password"
@@ -129,14 +142,11 @@ const Register = () => {
               </p>
             )}
 
-            {errors.password && error.password.type==='hasSpecialChar' && (
+            {errors.password && errors.password?.type === "pattern" && (
               <p className="text-red-600">
-                {'errors.password.message'}
-              </p>
-            )}
-            {errors.password && error.password.type==='hasUpperCase' && (
-              <p className="text-red-600">
-                {errors.password.message}
+                {
+                  "password must be one special character and one capital letter"
+                }
               </p>
             )}
           </div>

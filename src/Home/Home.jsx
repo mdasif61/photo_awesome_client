@@ -16,8 +16,8 @@ const Home = () => {
             </Helmet>
             <Slider></Slider>
             <PopularClass></PopularClass>
-            <PhotoGraphySample></PhotoGraphySample>
             <PopularInstructor></PopularInstructor>
+            <PhotoGraphySample></PhotoGraphySample>
         </div>
     );
 };

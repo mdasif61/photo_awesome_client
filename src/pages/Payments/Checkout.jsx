@@ -73,7 +73,6 @@ const Checkout = ({ payClass, price }) => {
         instructor:payClass.instructor
       };
       axiosSecure.post("/payments", paymentInfo).then((res) => {
-        console.log(res.data);
         if (res.data.paymentSave.insertedId) {
           axiosSecure
             .patch(`/seats/${payClass.selectId}`, payClass)
@@ -84,7 +83,7 @@ const Checkout = ({ payClass, price }) => {
             });
           axiosSecure.patch(`/classes/${payClass.selectId}`, payClass)
             .then(res => {
-              console.log(res)
+              // console.log(res)
             })
           Swal.fire("Payment Success!", "Thank You", "success");
         }

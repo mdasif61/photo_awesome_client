@@ -39,11 +39,16 @@ const Login = () => {
           image: user.photoURL,
           status: "Student",
         };
-        axios.post("http://localhost:5000/users", saveUser).then((res) => {
-          if (res.data.insertedId) {
-            // alert('success')
-          }
-        });
+        axios
+          .post(
+            "https://b7a12-summer-camp-server-side-mdasif61.vercel.app/users",
+            saveUser
+          )
+          .then((res) => {
+            if (res.data.insertedId) {
+              // alert('success')
+            }
+          });
         toast.success("Successfully logged!");
         navigate(from);
       })
@@ -54,7 +59,9 @@ const Login = () => {
 
   return (
     <div className="min-h-screen flex items-center justify-center">
-      <Helmet><title>Login | Photo Awesome</title></Helmet>
+      <Helmet>
+        <title>Login | Photo Awesome</title>
+      </Helmet>
       <div className="bg-gray-900 border-2 border-gray-300 w-2/5 p-8 rounded-xl shadow-xl">
         <h1 className="text-center text-orange-600 font-bold text-xl mb-5">
           Login Please
