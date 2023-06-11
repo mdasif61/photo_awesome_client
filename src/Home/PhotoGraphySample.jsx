@@ -10,8 +10,8 @@ import useClasses from "../hooks/useClasses";
 const PhotoGraphySample = () => {
     const { classes } = useClasses()
     return (
-        <div className="flex">
-            <div className="w-1/2 p-20">
+        <div className="md:flex">
+            <div className="md:w-1/2 w-full md:p-20 p-10">
                 <Swiper
                     effect={"cube"}
                     grabCursor={true}
@@ -34,7 +34,7 @@ const PhotoGraphySample = () => {
                     }
                 </Swiper>
             </div>
-            <div className="w-1/2 flex items-center justify-center p-20">
+            <div className="md:w-1/2 w-full flex items-center justify-center md:p-20 p-10">
                 <div className="join join-vertical w-full">
                     <div className="collapse collapse-arrow join-item border border-base-300">
                         <input type="radio" name="my-accordion-4" checked="checked" />
