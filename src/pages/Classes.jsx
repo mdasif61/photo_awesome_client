@@ -3,11 +3,15 @@ import ClassesCart from "./ClassesCart";
 import Container from "../container/Container";
 import useApproveClass from "../hooks/useApproveClass";
 import useAxiosSecure from "../hooks/useAxiosSecure";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { AuthContext } from "../Shared/Context";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet-async";
 
 const Classes = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
   const { approvedClass } = useApproveClass();
   const [axiosSecure] = useAxiosSecure();
   const { user } = useContext(AuthContext);
@@ -46,6 +50,9 @@ const Classes = () => {
   return (
     <div>
       <Container>
+        <Helmet>
+          <title>Classes | Photo Awesome</title>
+        </Helmet>
         <div className="grid grid-cols-1 md:grid-cols-4 gap-5 py-10">
           {approvedClass.map((singleClass) => (
             <ClassesCart

@@ -1,14 +1,18 @@
 import { useForm } from "react-hook-form";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../Shared/Context";
+import { Helmet } from "react-helmet-async";
 
 const image_token = import.meta.env.VITE_UPLOAD_IMAGE;
 
 const AddClass = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
   const [axiosSecure] = useAxiosSecure();
-  const {user}=useContext(AuthContext)
+  const { user } = useContext(AuthContext)
   const [addLoading, setAddLoading] = useState(false);
   const {
     handleSubmit,
@@ -34,10 +38,10 @@ const AddClass = () => {
             instructor,
             email,
             price: parseFloat(price),
-            seats:parseInt(seats),
+            seats: parseInt(seats),
             image: imageURL,
             status: "Pending",
-            total_enroll:0,
+            total_enroll: 0,
           };
           axiosSecure.post("/classes", addClass).then((data) => {
             if (data.data.insertedId) {
@@ -52,6 +56,7 @@ const AddClass = () => {
 
   return (
     <div className="w-8/12 mx-auto">
+      <Helmet><title>Add A Class | Photo Awesome</title></Helmet>
       <form onSubmit={handleSubmit(onSubmit)} className="w-full">
         <h1 className="text-2xl font-bold mb-10 uppercase text-center">
           Add Your Class
@@ -146,7 +151,7 @@ const AddClass = () => {
           disabled={addLoading}
           className="btn btn-block mt-7 hover:bg-green-500 bg-green-600 text-white"
           type="submit"
-          value={`${addLoading?'Class Adding...':'Add Class'}`}
+          value={`${addLoading ? 'Class Adding...' : 'Add Class'}`}
         />
       </form>
     </div>

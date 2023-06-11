@@ -4,6 +4,7 @@ import { Elements } from "@stripe/react-stripe-js";
 import Checkout from "./Checkout";
 import { useEffect, useState } from "react";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
+import { Helmet } from "react-helmet-async";
 
 const stripePromise = loadStripe(import.meta.env.VITE_PAYMENT_KEY);
 const Payments = () => {
@@ -22,6 +23,7 @@ const Payments = () => {
 
   return (
     <div className="w-full p-20 bg-white shadow-2xl rounded-2xl">
+      <Helmet><title>Payment | Photo Awesome</title></Helmet>
       <Elements stripe={stripePromise}>
         <Checkout price={price} payClass={payClass}></Checkout>
       </Elements>

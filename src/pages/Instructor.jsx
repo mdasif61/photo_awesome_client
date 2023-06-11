@@ -2,8 +2,12 @@ import { useEffect, useState } from "react";
 import Container from "../container/Container";
 import { FaEnvelope } from "react-icons/fa";
 import { Fade } from "react-awesome-reveal";
+import { Helmet } from "react-helmet-async";
 
 const Instructor = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
   const [instructors, setInstructors] = useState([]);
   useEffect(() => {
     fetch("http://localhost:5000/allInstructor")
@@ -15,6 +19,9 @@ const Instructor = () => {
 
   return (
     <div className="bg-green-100 min-h-screen">
+      <Helmet>
+        <title>Instructor | Photo Awesome</title>
+      </Helmet>
       <Container>
         <div className="grid grid-cols-1 md:grid-cols-4 gap-5 py-10">
           {instructors.map((instructor) => (

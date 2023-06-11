@@ -5,6 +5,7 @@ import { AuthContext } from "./Context";
 import { useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
 import axios from "axios";
+import { Helmet } from "react-helmet-async";
 
 const Register = () => {
   const [error, setError] = useState("");
@@ -72,6 +73,7 @@ const Register = () => {
 
   return (
     <div className="min-h-screen flex items-center justify-center">
+      <Helmet><title>Register | Photo Awesome</title></Helmet>
       <div className="bg-gray-900 border-2 border-gray-300 w-2/5 p-8 rounded-xl shadow-xl">
         <h1 className="text-center font-bold text-xl text-orange-500 mb-5">
           Register Please

@@ -3,8 +3,12 @@ import useSelectedClass from "../../hooks/useSelectedClass";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
+import { useEffect } from "react";
 
 const MySelectedClass = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
   const { selectClass, refetch } = useSelectedClass();
   const [axiosSecure] = useAxiosSecure();
 
@@ -29,7 +33,7 @@ const MySelectedClass = () => {
   };
 
   return (
-    selectClass.length>0 ? <> <div className="p-12">
+    selectClass.length > 0 ? <> <div className="p-12">
       <h1 className="text-xl font-bold mb-5 text-gray-600">
         Total Select Class : {selectClass.length}
       </h1>
@@ -70,7 +74,7 @@ const MySelectedClass = () => {
         ))}
       </div>
     </div></> : <>
-    <h1 className="text-xl font-bold text-gray-500">Select Class Not Found</h1>
+      <h1 className="text-xl font-bold text-gray-500">Select Class Not Found</h1>
     </>
   );
 };

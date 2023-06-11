@@ -1,14 +1,18 @@
 import axios from "axios";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
-// import useUsers from "../../hooks/useUsers";
+import { useEffect } from "react";
+import { Helmet } from "react-helmet-async";
 
 const ManageUsers = () => {
 
-  // const { users, refetch } = useUsers()
-  const [axiosSecure]=useAxiosSecure()
-  const {data:users=[], refetch}=useQuery(['users'], async()=>{
-    const res=await axiosSecure.get('/users')
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
+
+  const [axiosSecure] = useAxiosSecure()
+  const { data: users = [], refetch } = useQuery(['users'], async () => {
+    const res = await axiosSecure.get('/users')
     return res.data
   })
 
@@ -33,6 +37,7 @@ const ManageUsers = () => {
 
   return (
     <div className="w-full p-5 mx-auto">
+      <Helmet><title>Manage Users | Photo Awesome</title></Helmet>
       <h1 className="text-2xl font-bold text-center mb-5">User Management</h1>
       <div className="overflow-x-auto">
         <table className="table">

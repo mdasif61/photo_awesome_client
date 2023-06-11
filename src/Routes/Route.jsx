@@ -21,11 +21,13 @@ import Instructor from "../pages/Instructor";
 import FeedBack from "../pages/FeedBack";
 import UpdateClass from "../pages/UpdateClass";
 import StudentPrivate from "../Shared/StudentPrivate";
+import Error from "../pages/Error";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Main></Main>,
+    errorElement:<Error></Error>,
     children: [
       {
         path: "/",

@@ -1,8 +1,15 @@
 import axios from "axios";
 import useClasses from "../../hooks/useClasses";
 import { Link } from "react-router-dom";
+import { useEffect } from "react";
+import { Helmet } from "react-helmet-async";
 
 const ManageClass = () => {
+
+  useEffect(()=>{
+    window.scrollTo(0,0)
+  },[])
+
   const { classes, refetch } = useClasses();
 
   const handleApprove = (id) => {
@@ -26,6 +33,7 @@ const ManageClass = () => {
   return (
     classes.length > 0 ? <>
       <div className="overflow-x-auto w-full p-5">
+        <Helmet><title>Manage Classes | Photo Awesome</title></Helmet>
         <table className="table">
           <thead>
             <tr className="text-center font-bold text-black">

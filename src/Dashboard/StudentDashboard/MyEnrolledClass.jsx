@@ -3,6 +3,9 @@ import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { AuthContext } from "../../Shared/Context";
 
 const MyEnrolledClass = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
   const { user } = useContext(AuthContext);
   const [axiosSecure] = useAxiosSecure();
   const [enrolls, setEnrolls] = useState([]);
