@@ -27,9 +27,8 @@ const ManageClass = () => {
     classes.length > 0 ? <>
       <div className="overflow-x-auto w-full p-5">
         <table className="table">
-          {/* head */}
           <thead>
-            <tr className="text-center font-bold text-lg text-black">
+            <tr className="text-center font-bold text-black">
               <th>Image</th>
               <th>Name</th>
               <th>Instructor</th>

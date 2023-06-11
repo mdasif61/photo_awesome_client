@@ -49,6 +49,7 @@ const MyClass = () => {
                 </button>
               </Link>
             </div>
+            {classes.feedback && <p className="text-sm mt-2 py-2 px-3 bg-red-100 text-red-600 rounded-full border border-red-600">{classes.feedback}</p>}
           </div>
         </div>
       ))}

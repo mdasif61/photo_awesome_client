@@ -1,9 +1,18 @@
+import { useParams } from "react-router-dom";
+import useAxiosSecure from "../hooks/useAxiosSecure";
+
 const FeedBack = () => {
+
+    const {id}=useParams();
+    const [axiosSecure]=useAxiosSecure()
 
     const handleFeedback = (event) => {
         event.preventDefault()
         const feedback=event.target.feedback.value;
-        console.log(feedback)
+        axiosSecure.patch(`/classes/${id}`, {feedback})
+        .then(res=>{
+            console.log(res)
+        })
     }
 
     return (

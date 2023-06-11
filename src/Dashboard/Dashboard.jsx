@@ -4,7 +4,7 @@ import "../Css/Dashboard.css";
 import useAdmin from "../hooks/useAdmin";
 import useInstructor from "../hooks/useInstructor";
 import Container from "../container/Container";
-import { FaBook, FaClipboard, FaHistory } from "react-icons/fa";
+import { FaBook, FaClipboard, FaFolderMinus, FaHistory, FaPlusCircle, FaUsers } from "react-icons/fa";
 
 const Dashboard = () => {
   // const isAdmin = true;
@@ -37,20 +37,20 @@ const Dashboard = () => {
               {isAdmin && (
                 <>
                   <li className="text-lg font-semibold">
-                    <Link to="/dashboard/manageClass">Manage Class</Link>
+                    <Link to="/dashboard/manageClass"><FaFolderMinus/> Manage Class</Link>
                   </li>
                   <li className="text-lg font-semibold">
-                    <Link to="/dashboard/manageUsers">Manage Users</Link>
+                    <Link to="/dashboard/manageUsers"><FaUsers/> Manage Users</Link>
                   </li>
                 </>
               )}
               {isInstructor && (
                 <>
                   <li className="text-lg font-semibold">
-                    <Link to="/dashboard/addClass">Add A Class</Link>
+                    <Link to="/dashboard/addClass"><FaPlusCircle/> Add A Class</Link>
                   </li>
                   <li className="text-lg font-semibold">
-                    <Link to="/dashboard/myClass">My Classes</Link>
+                    <Link to="/dashboard/myClass"><FaFolderMinus/> My Classes</Link>
                   </li>
                 </>
               )}
