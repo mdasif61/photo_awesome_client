@@ -56,15 +56,6 @@ const Navbar = () => {
                 </span>
               )}
             </span>
-            {/* {!open ? (
-              <div className="md:hidden">
-                <h1 className="text-white font-semibold text-lg">
-                  PhotoAwesome
-                </h1>
-              </div>
-            ) : (
-              <img className="w-12 mr-3" src={navLogo} alt="" />
-            )} */}
           </div>
           <div
             className={`md:flex ${!open
